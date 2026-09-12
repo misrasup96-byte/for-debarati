@@ -259,8 +259,8 @@
             
             const encodedMessage = encodeURIComponent(waMessage);
             
-            // Open WhatsApp with pre-filled message seamlessly
-            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+            // Open WhatsApp with pre-filled message seamlessly directed to phone number 7044928423
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=917044928423&text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
 
             // Show confirmation screen seamlessly
