@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Down to My Favorite Day | For Debarati ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        /* Floating Hearts Background */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-particle {
+            position: absolute;
+            bottom: -10px;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 8s infinite linear;
+            font-size: 20px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin-top: 40px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .countdown-box {
+            background: #fff0f5;
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 75px;
+            box-shadow: 0 4px 10px rgba(214, 51, 132, 0.15);
+        }
+
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #d63384;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Section Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-50px);
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #c2185b;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .love-note {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #444;
+        }
+
+        /* Interactive Quiz Section */
+        .quiz-option {
+            background: #fff;
+            border: 2px solid #ffb6c1;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .quiz-option:hover {
+            background: #ffb6c1;
+            color: white;
+        }
+
+        .quiz-response {
+            margin-top: 15px;
+            font-style: italic;
+            color: #d63384;
+            text-align: center;
+            min-height: 24px;
+            font-weight: 600;
+        }
+
+        /* The Big Proposal Card */
+        .proposal-card {
+            text-align: center;
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffffff, #fff5f7);
+            border: 2px solid #ffccd5;
+        }
+
+        .proposal-card h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-yes {
+            background-color: #ff4081;
+            color: white;
+            z-index: 2;
+        }
+
+        .btn-yes:hover {
+            background-color: #e91e63;
+            transform: scale(1.1);
+        }
+
+        .btn-no {
+            background-color: #e0e0e0;
+            color: #666;
+            position: absolute;
+            transition: all 0.15s ease-out;
+            z-index: 1;
+        }
+
+        /* Modal Overlay for "YES" response */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff4081;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .close-btn {
+            background: #ff4081;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Heart animation pop for modal */
+        .big-heart {
+            font-size: 4rem;
+            animation: pulse 1s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Hearts -->
+    <div class="heart-bg" id="heartContainer"></div>
+
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <h1>Counting Down for My Debarati ❤️</h1>
+            <p class="subtitle">September 17th is almost here, and I can't keep calm!</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Mins</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Secs</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pre-Birthday Love Letter -->
+        <div class="card">
+            <h2>To My Dearest Fiancée ✨</h2>
+            <p class="love-note">
+                Debarati, as your birthday approaches, my heart fills with so much gratitude and happiness. 
+                Every single day with you feels like a gift, but September 17th is extra special because it's the day the world was blessed with you. 
+                I am counting every second until we celebrate your big day together. You mean everything to me! 💖
+            </p>
+        </div>
+
+        <!-- Interactive Cute Questions -->
+        <div class="card">
+            <h2>A Quick Little Quiz for You 😉</h2>
+            <p style="text-align: center; margin-bottom: 15px; font-size: 0.95rem; color: #666;">What are you looking forward to the most on your birthday?</p>
+            
+            <div class="quiz-option" onclick="showAnswer('Correct! Unlimited hugs are already reserved for you 24/7. 🤗')">
+                A) Endlessly hugging from me 💕
+            </div>
+            <div class="quiz-option" onclick="showAnswer('Yum! Eating as much birthday cake as possible 🎂')">
+                B) A romantic date with me and endless clicks 🎂
+            </div>
+            <div class="quiz-option" onclick="showAnswer('Hehe! Secret surprise gifts are definitely on the way... 🎁')">
+                C) Endless laughing and love 🎁
+            </div>
+
+            <div class="quiz-response" id="quizResponse"></div>
+        </div>
+
+        <!-- Flying "No" Proposal Card -->
+        <div class="card proposal-card" id="proposalArea">
+            <h2>Debarati, Will You Be My Wife? 💍</h2>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="openProposalModal()">YES! 💖</button>
+                <button class="btn btn-no" id="noBtn" onmouseover="flyAway()" onclick="flyAway()">No 😜</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Celebration Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="big-heart">💖💍✨</div>
+            <h3>I KNEW IT! 😍</h3>
+            <p>
+                My dearest Debarati,<br><br>
+                You made the best choice! I can't wait to spend forever loving you, taking care of you, making you laugh, and celebrating every birthday by your side. You make my life complete. 
+                <br><br>
+                <strong>Happy Pre-Birthday, my future wife! 🥂❤️</strong>
+            </p>
+            <button class="close-btn" onclick="closeProposalModal()">Forever & Always 💕</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Countdown Timer Code ---
+        function updateCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            
+            // Set Target Date: September 17th
+            let targetDate = new Date(`September 17, ${currentYear} 00:00:00`);
+            
+            // If September 17th has already passed this year, set for next year
+            if (now > targetDate && now.getDate() !== 17) {
+                targetDate = new Date(`September 17, ${currentYear + 1} 00:00:00`);
+            }
+
+            const diff = targetDate - now;
+
+            if (diff <= 0 && now.getDate() === 17) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        // --- 2. Interactive Quiz ---
+        function showAnswer(message) {
+            document.getElementById('quizResponse').innerText = message;
+        }
+
+
+        // --- 3. Flying "No" Button Effect ---
+        const noBtn = document.getElementById('noBtn');
+        const proposalArea = document.getElementById('proposalArea');
+
+        // Set initial position of 'No' button relative to the proposal card
+        noBtn.style.left = '60%';
+
+        function flyAway() {
+            const cardRect = proposalArea.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Calculate max available space inside the proposal card
+            const maxX = cardRect.width - btnRect.width - 20;
+            const maxY = cardRect.height - btnRect.height - 20;
+
+            // Generate new random coordinates
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+
+
+        // --- 4. Modal Acknowledgement on YES ---
+        function openProposalModal() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeProposalModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+
+        // --- 5. Background Heart Generator ---
+        function createHearts() {
+            const container = document.getElementById('heartContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        setInterval(createHearts, 400);
+    </script>
+</body>
+</html>
